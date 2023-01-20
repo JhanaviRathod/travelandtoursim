@@ -1,0 +1,41 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="height: 80px;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Safar Sathi</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        
+        <li class="nav-item">
+          <a class="nav-link btn btn-light text-primary fw-bold me-3" aria-current="page" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <!-- --------------------------------*ngIf="isAdmin()" ------------------------  -->
+          <a class="nav-link btn btn-light text-primary fw-bold me-3" *ngIf="userService.roleMatch(['Admin'])" aria-current="page" routerLink="/addnewpackage" >Add New Package</a>
+        </li>
+        <li class="nav-item">
+          <!-- --------------------------------*ngIf="isAdmin()" ------------------------  -->
+          <a class="nav-link btn btn-light text-primary fw-bold me-3" *ngIf="userService.roleMatch(['Admin'])" aria-current="page" routerLink="/showPackageDetails" >Show All Packages</a>
+        </li>
+        <li class="nav-item">
+          <!-- --------------------------------*ngIf="isAdmin()" ------------------------  -->
+          <a class="nav-link btn btn-light text-primary fw-bold me-3" *ngIf="userService.roleMatch(['Admin'])" aria-current="page" routerLink="/getAllOrderDetails" >Show Order Confirmed</a>
+        </li>
+        
+       
+
+        <!-- navbar for user panel -->
+        <li class="nav-item">
+          <a class="nav-link btn btn-light text-primary fw-bold me-3" aria-current="page" routerLink="/" *ngIf="userService.roleMatch(['User'])">User Dashboard</a>
+        </li>
+      </ul>
+     
+      <button *ngIf="isLoggedIn()" type="button" class="btn btn-success me-3" routerLink="/login">Login</button>
+      <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)= "logout()">Logout</button>
+    </div>
+  </div>
+</nav>
+
+

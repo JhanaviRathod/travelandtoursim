@@ -1,0 +1,15 @@
+.image-card{
+    border: 1px solid black;
+}
+.btn-remove-img{
+    position: absolute;
+    cursor: pointer;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    height: auto;
+    text-align: center;
+    border-radius: 50%;
+    width: 20px;
+}

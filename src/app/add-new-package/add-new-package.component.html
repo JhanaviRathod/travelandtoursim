@@ -1,0 +1,61 @@
+<div class="container mt-5">
+    <div class="card p-2">
+        <div class="row">
+            <div class="col-lg-6 ">
+                
+                <form #packageForm="ngForm" (ngSubmit)="addPackage(packageForm)" class="p-2">
+                    <div class="mb-3">
+                      <label  class="form-label">Package Name</label>
+                      <input type="text" 
+                      class="form-control"
+                      [(ngModel)]="pack.packageName"
+                      name = "packageName" >                     
+                    </div>
+                    <div class="mb-3">
+                      <label  class="form-label">Package Description</label>
+                      <input type="text" 
+                      class="form-control"
+                      [(ngModel)]="pack.description"
+                      name = "Description" >                      
+                    </div>
+                    <div class="mb-3">
+                      <label  class="form-label">Package Actual Price</label>
+                      <input type="text" 
+                      class="form-control"
+                      [(ngModel)]="pack.packageActualPrice"
+                      name = "packageActualPrice" 
+                       >                      
+                    </div>
+                    <div class="mb-3">
+                      <label  class="form-label">Package Discounted Price</label>
+                      <input type="text" 
+                      class="form-control"
+                      [(ngModel)]="pack.packageDiscountedPrice"
+                      name = "packageDiscountedPrice" >                      
+                    </div>
+        
+                    <button type="submit" class="btn btn-primary me-3">Add</button>
+                    <button type="" class="btn btn-primary">Clear</button>
+                  </form>
+            </div>
+            <!-- image comes here  -->
+            <div class="col-lg-6">
+              <div>
+                <input type="file" multiple value="select" #selectFile (change)="onFileSelected($event)">
+              </div>
+              <div class="mt-5">
+                  
+                    <div *ngFor="let file of pack.packageImages; let i = index;" class="col ">
+                      <div style="position :relative; width : 100px">
+                        <span class="btn-remove-img" (click)="removeImages(i)">x</span>
+                        <img [src]="file.url" width="100px" height="100px" class="mb-4 image-card">
+                      
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

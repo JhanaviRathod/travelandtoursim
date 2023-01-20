@@ -1,0 +1,80 @@
+<div class="container mt-3">
+    <div class="card">
+        <div class="card text-center bg-success text-light mb-3" style="width: auto; height: 100px;">
+            <h2 class="fs-2 mt-4">Enter the details to complete the order</h2>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-6">
+            <form #orderForm="ngForm" (ngSubmit)="placeOrder(orderForm)" class="p-2">
+                <div class="mb-3">
+                  <label  class="form-label">Full Name</label>
+                  <input type="text" 
+                  class="form-control"
+                  [(ngModel)]="orderDetails.fullname"
+                  name = "fullname" >                     
+                </div>
+                <div class="mb-3">
+                  <label  class="form-label">Address</label>
+                  <input type="text" 
+                  class="form-control"
+                  [(ngModel)]="orderDetails.fullAddress"
+                  name = "fullAddress" >                     
+                </div>
+                <div class="mb-3">
+                  <label  class="form-label">Contact No</label>
+                  <input type="text" 
+                  class="form-control"
+                  [(ngModel)]="orderDetails.contactNumber"
+                  name = "contactNumber" >                     
+                </div>
+                <div class="mb-3">
+                  <label  class="form-label">Alternate Contact No</label>
+                  <input type="text" 
+                  class="form-control"
+                  [(ngModel)]="orderDetails.alternatecontactNumber"
+                  name = "alternatecontactNumber" >                     
+                </div>
+                <button type="submit" class="btn btn-primary me-3">Add</button>
+                </form>
+            </div>
+            <div class="col-lg-6">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Location</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr  *ngFor="let pack of packageDetails">
+                    <th scope="row">{{pack.packageName}}</th>
+                    <td>{{pack.packageDiscountedPrice}}</td>
+                    <td>
+                      <select class="form-select"
+                      #quantity
+                      [ngModel]="getQuantityForPackage(pack.packageId)"
+                      (change)="onQuantityChanged(quantity.value, pack.packageId)">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                      </select>
+                    </td>
+                    <td>{{getCalculatedTotal(pack.packageId, pack.packageDiscountedPrice)}}</td>
+                  </tr>
+                  <tr *ngFor="let pack of packageDetails">
+                    <td></td>
+                    <td></td>
+                    <td>Total</td>
+                    <td>{{getCalculatedTotal(pack.packageId, pack.packageDiscountedPrice)}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+
+    </div>
+</div>
